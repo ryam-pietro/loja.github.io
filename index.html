@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Loja Vitrine</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Montserrat:wght@400;600;800&family=Playfair+Display:wght@400;700;800&family=Lora:wght@400;700&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{--bg:#fff;--bg2:#f5f6f8;--tx:#14171c;--mut:#667085;--pri:#e8590c;--pri2:color-mix(in srgb,var(--pri) 78%,#000);--hero2:#9a3412;--bd:#e7e9ee;--card:#fff;--sh:0 1px 3px rgba(16,24,40,.08),0 8px 24px rgba(16,24,40,.06);--r:16px}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1014;--bg2:#161920;--tx:#f3f4f6;--mut:#9aa3b2;--bd:#262b36;--card:#1a1e27}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--font,'Segoe UI'),system-ui,Arial,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+header{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd);z-index:10}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-size:1.45rem;font-weight:800;letter-spacing:-.6px}.logo span{color:var(--pri)}
+nav a{margin-left:20px;text-decoration:none;color:var(--mut);font-weight:600;font-size:.93rem}nav a:hover{color:var(--pri)}
+.hero{color:#fff;text-align:center;padding:80px 0 72px;background:radial-gradient(600px 300px at 15% 0,rgba(255,255,255,.18),transparent 60%),radial-gradient(500px 300px at 90% 100%,rgba(0,0,0,.25),transparent 60%),linear-gradient(135deg,var(--pri),var(--hero2))}
+.pill{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:5px 14px;border-radius:99px;font-size:.82rem;font-weight:600;margin-bottom:18px}
+.hero h1{font-size:clamp(2rem,6.5vw,3.4rem);margin:0 auto 14px;line-height:1.1;letter-spacing:-1px;max-width:760px}
+.hero p{margin:0 auto 28px;max-width:520px;opacity:.93;font-size:1.05rem}
+.perks{display:flex;gap:10px 26px;justify-content:center;flex-wrap:wrap;margin-top:30px;font-size:.88rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:13px 24px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;background:var(--pri);color:#fff;transition:.15s;box-shadow:0 4px 14px color-mix(in srgb,var(--pri) 35%,transparent)}
+.btn:hover{background:var(--pri2);transform:translateY(-2px)}
+.hero .btn{background:#fff;color:var(--pri2)}
+.btn.wa{background:#25d366;width:100%;box-shadow:none}.btn.wa:hover{background:#1da851}
+.btn.sec{background:var(--bg2);color:var(--tx);border:1px solid var(--bd);box-shadow:none;width:100%;margin-top:8px}
+.btn.del{background:#dc2626;padding:7px 13px;font-size:.84rem;box-shadow:none}
+section{padding:54px 0}h2{font-size:1.7rem;margin:0;letter-spacing:-.5px}.sub{color:var(--mut);margin:4px 0 20px;font-size:.95rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--sh);transition:.25s}
+.card:hover{transform:translateY(-6px);box-shadow:0 16px 36px rgba(16,24,40,.16)}
+.ph{overflow:hidden;background:var(--bg2)}.card img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform .4s}.card:hover img{transform:scale(1.06)}
+.info{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}.card h3{margin:0;font-size:1.06rem}.card p{margin:0;color:var(--mut);font-size:.9rem;flex:1}
+.price{font-size:1.4rem;font-weight:800;color:var(--pri)}
+.box{max-width:580px;margin:0 auto 20px;background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:26px;box-shadow:var(--sh)}
+.box h2{font-size:1.3rem}
+label{display:block;font-weight:600;margin:14px 0 5px;font-size:.88rem}
+input,textarea,select{width:100%;padding:11px 13px;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:inherit}
+.row{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--bd)}.row img{width:48px;height:48px;border-radius:10px;object-fit:cover}
+.msg{margin:10px 0 0;font-size:.88rem;color:#dc2626;min-height:1em}.msg.ok{color:#16a34a}
+.note{font-size:.82rem;color:var(--mut);background:var(--bg2);border-radius:10px;padding:10px 12px;margin-top:12px}
+.tabs{display:flex;gap:6px;max-width:580px;margin:0 auto 16px;background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:5px}
+.tb{flex:1;border:0;background:transparent;color:var(--mut);font:inherit;font-weight:700;font-size:.82rem;padding:10px 4px;border-radius:10px;cursor:pointer}
+.tb.on{background:var(--card);color:var(--pri);box-shadow:var(--sh)}
+.hide{display:none!important}
+footer{background:var(--bg2);border-top:1px solid var(--bd);padding:34px 0;text-align:center;color:var(--mut);font-size:.9rem}
+footer a{color:var(--pri);font-weight:600;cursor:pointer;text-decoration:none;margin:0 8px}
+@media(max-width:560px){nav a:not(:last-child){display:none}.hero{padding:60px 0 54px}section{padding:40px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="logo js-nome"></div>
+<nav><a href="#" onclick="show('cliente')">Início</a><a href="#catalogo" onclick="show('cliente')">Produtos</a><a href="#contato" onclick="show('cliente')">Contato</a></nav></div></header>
+
+<!-- ÁREA DO CLIENTE -->
+<main id="v-cliente">
+  <div class="hero"><div class="wrap">
+    <span class="pill">✨ Atendimento direto pelo WhatsApp</span>
+    <h1>As melhores ofertas, a um toque de você</h1>
+    <p>Escolha seu produto, toque em pedir e finalize a compra por mensagem.</p>
+    <a class="btn" href="#catalogo">Ver produtos →</a>
+    <div class="perks"><span>⚡ Pedido rápido</span><span>🔒 Sem cadastro</span><span>💬 Atendimento humano</span></div>
+  </div></div>
+  <section id="catalogo"><div class="wrap"><h2>Nossos produtos</h2><p class="sub">Toque em pedir para falar com a loja</p><div class="grid" id="grid"></div></div></section>
+</main>
+
+<!-- ÁREA DO ADMINISTRADOR -->
+<main id="v-admin" class="hide"><section><div class="wrap">
+  <div class="box" id="login" style="max-width:480px">
+    <h2>Acesso administrativo</h2>
+    <p class="sub">Cole o token do GitHub (feito uma única vez). Ele fica guardado só neste aparelho.</p>
+    <label>Token do GitHub</label><input id="lTok" type="password" autocomplete="off" onkeydown="if(event.key==='Enter')entrar()">
+    <label>Usuário do GitHub</label><input id="lOwner" autocapitalize="off">
+    <label>Nome do repositório</label><input id="lRepo" autocapitalize="off">
+    <p class="msg" id="lmsg"></p><button class="btn" style="width:100%" onclick="entrar()">Entrar</button>
+  </div>
+  <div id="painel" class="hide">
+    <div class="tabs">
+      <button class="tb on" data-t="prod" onclick="aba('prod')">🛍️ Produtos</button><button class="tb" data-t="cfg" onclick="aba('cfg')">🎨 Loja</button><button class="tb" data-t="div" onclick="aba('div')">📣 Divulgar</button><button class="tb" data-t="conta" onclick="aba('conta')">👤 Conta</button>
+    </div>
+    <div class="box" id="t-prod">
+      <h2>Novo produto</h2>
+      <label>Nome</label><input id="pNome"><label>Preço (R$)</label><input id="pPreco" type="number" step="0.01" min="0">
+      <label>Imagem (arquivo)</label><input id="pImg" type="file" accept="image/*"><label>ou URL da imagem</label><input id="pUrl" placeholder="https://...">
+      <label>Descrição</label><textarea id="pDesc" rows="3"></textarea>
+      <p class="msg" id="amsg"></p><button class="btn" style="width:100%" onclick="adicionar()">Adicionar ao catálogo</button>
+      <h2 style="margin-top:28px;font-size:1.15rem">Produtos cadastrados</h2><div id="lista"></div>
+    </div>
+    <div class="box hide" id="t-cfg">
+      <h2>Configurações da loja</h2>
+      <label>Nome da loja</label><input id="cNome"><label>WhatsApp (com DDI e DDD)</label><input id="cZap" inputmode="numeric">
+      <label>Instagram (@usuario ou link)</label><input id="cIg"><label>Cor principal</label><input id="cCor" type="color" style="height:44px;padding:3px">
+      <label>Cor do destaque</label><input id="cCor2" type="color" style="height:44px;padding:3px">
+      <label>Fonte</label><select id="cFonte"><option value="Segoe UI">Padrão</option><option>Poppins</option><option>Montserrat</option><option>Playfair Display</option><option>Lora</option><option>Oswald</option></select>
+      <p class="msg ok" id="cmsg"></p><button class="btn" style="width:100%" onclick="salvarCfg()">Salvar configurações</button>
+    </div>
+    <div class="box hide" id="t-div">
+      <h2>📣 Divulgar o site</h2><p class="sub">Envie o link a um cliente ou mostre o QR Code.</p>
+      <label>Link do site</label><input id="dLink" oninput="gerarQR()"><label>WhatsApp da pessoa (opcional)</label><input id="dTel" inputmode="numeric" placeholder="5511988887777">
+      <label>Mensagem</label><textarea id="dTexto" rows="3"></textarea><p class="msg ok" id="dOk"></p>
+      <button class="btn wa" onclick="enviarLink()">💬 Enviar pelo WhatsApp</button><button class="btn sec" onclick="copiarLink()">📋 Copiar link</button>
+      <h2 style="margin-top:26px;font-size:1.15rem">QR Code</h2>
+      <div style="text-align:center;margin-top:12px"><div id="qr" style="display:inline-block;background:#fff;padding:12px;border-radius:12px"></div><p class="sub">Segure o dedo na imagem para salvar.</p></div>
+    </div>
+    <div class="box hide" id="t-conta">
+      <h2>👤 Conta</h2><p class="sub" id="qInfo"></p>
+      <button class="btn sec" onclick="sair(true)">Sair e apagar o token deste aparelho</button>
+      <button class="btn sec" onclick="sair(false)">Voltar ao site</button>
+    </div>
+  </div>
+</div></section></main>
+
+<footer id="contato"><div class="wrap"><div class="logo js-nome" style="margin-bottom:8px"></div>
+<p>Pedidos finalizados pelo WhatsApp • © 2026</p>
+<p><a id="ig" target="_blank" rel="noopener" class="hide">Siga no Instagram</a><a onclick="abrirAdmin()">Acesso administrativo</a></p></div></footer>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=t=>{const d=document.createElement('div');d.textContent=t;return d.innerHTML};
+const brl=n=>Number(n).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const PADRAO={nome:"Loja Vitrine",whatsapp:"5511999999999",instagram:"",cor:"#e8590c",cor2:"#9a3412",fonte:"Segoe UI"};
+const ARQ='dados.json';                       /* arquivo-banco dentro do repositório */
+let D={cfg:{...PADRAO},produtos:[]},token='';
+
+const svg=(c,e)=>"data:image/svg+xml,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><rect width="400" height="400" fill="${c}"/><text x="200" y="230" font-size="100" text-anchor="middle">${e}</text></svg>`);
+const DEMO=[{id:'d1',nome:"Tênis Esportivo",preco:249.9,desc:"Leve e confortável para o dia a dia.",img:svg('#fdba74','👟')},{id:'d2',nome:"Fone Bluetooth",preco:129.9,desc:"Som potente e bateria longa.",img:svg('#93c5fd','🎧')}];
+
+/* ===== LOJA (cliente) ===== */
+function aplicarCfg(){
+  const c=D.cfg,r=document.documentElement.style;
+  r.setProperty('--pri',c.cor);r.setProperty('--hero2',c.cor2);r.setProperty('--font',"'"+c.fonte+"'");document.title=c.nome;
+  const pal=c.nome.trim().split(' '),ult=pal.pop();
+  document.querySelectorAll('.js-nome').forEach(el=>el.innerHTML=(pal.length?esc(pal.join(' '))+' ':'')+'<span>'+esc(ult)+'</span>');
+  const a=$('ig');if(c.instagram){a.href=c.instagram;a.classList.remove('hide')}else a.classList.add('hide');
+}
+function renderCatalogo(){
+  const l=D.produtos.length?D.produtos:DEMO;
+  $('grid').innerHTML=l.map(p=>`<article class="card"><div class="ph"><img src="${esc(p.img||'')}" alt="${esc(p.nome)}" loading="lazy"></div><div class="info"><h3>${esc(p.nome)}</h3><p>${esc(p.desc||'')}</p><div class="price">${brl(p.preco)}</div><button class="btn wa" onclick="pedir('${p.id}')">💬 Pedir no WhatsApp</button></div></article>`).join('');
+}
+function renderLista(){$('lista').innerHTML=D.produtos.map(p=>`<div class="row"><img src="${esc(p.img||'')}" alt=""><span style="flex:1">${esc(p.nome)}<br><small>${brl(p.preco)}</small></span><button class="btn del" onclick="remover('${p.id}')">Excluir</button></div>`).join('')||'<p class="sub">Nenhum produto (o site mostra exemplos).</p>'}
+function pedir(id){
+  const p=[...D.produtos,...DEMO].find(x=>x.id===id);if(!p)return;
+  open(`https://wa.me/${D.cfg.whatsapp}?text=${encodeURIComponent(`Olá! Tenho interesse no produto "${p.nome}" (${brl(p.preco)}). Ele ainda está disponível?`)}`,'_blank');
+}
+async function carregarPublico(){
+  try{const r=await fetch(ARQ+'?t='+Date.now(),{cache:'no-store'});if(r.ok){const j=await r.json();D={cfg:{...PADRAO,...j.cfg},produtos:j.produtos||[]};aplicarCfg();renderCatalogo()}}catch(e){}
+}
+
+/* ===== BANCO = arquivo dados.json no GitHub (API) ===== */
+const LS=k=>{try{return localStorage.getItem(k)||''}catch(e){return ''}};
+const SS=(k,v)=>{try{v?localStorage.setItem(k,v):localStorage.removeItem(k)}catch(e){}};
+function repo(){ /* detecta usuário/repositório pelo endereço github.io */
+  const h=location.hostname;let o='',r='';
+  if(h.endsWith('.github.io')){o=h.split('.')[0];r=location.pathname.split('/')[1]||h}
+  return{o:LS('gh_o')||o,r:LS('gh_r')||r}
+}
+const base=()=>{const {o,r}=repo();return `https://api.github.com/repos/${o}/${r}`};
+const H=(raw)=>({Authorization:'Bearer '+token,Accept:raw?'application/vnd.github.raw+json':'application/vnd.github+json'});
+async function lerBanco(){ /* dados mais recentes direto do repositório */
+  const m=await fetch(`${base()}/contents/${ARQ}`,{headers:H(),cache:'no-store'});
+  if(m.status===404)return;
+  if(!m.ok)throw new Error('ler');
+  const r=await fetch(`${base()}/contents/${ARQ}`,{headers:H(true),cache:'no-store'});
+  const j=JSON.parse(await r.text());D={cfg:{...PADRAO,...j.cfg},produtos:j.produtos||[]};
+}
+let fila=Promise.resolve();
+function gravar(){ /* grava uma de cada vez para não conflitar */
+  fila=fila.then(async()=>{
+    let sha;const m=await fetch(`${base()}/contents/${ARQ}`,{headers:H(),cache:'no-store'});
+    if(m.ok)sha=(await m.json()).sha;
+    const body={message:'Atualiza loja',content:btoa(unescape(encodeURIComponent(JSON.stringify(D))))};if(sha)body.sha=sha;
+    const r=await fetch(`${base()}/contents/${ARQ}`,{method:'PUT',headers:{...H(),'Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!r.ok)throw new Error('gravar '+r.status);
+  });
+  return fila;
+}
+
+/* ===== NAVEGAÇÃO / LOGIN (token) ===== */
+function show(v){$('v-cliente').classList.toggle('hide',v!=='cliente');$('v-admin').classList.toggle('hide',v!=='admin');scrollTo(0,0)}
+function abrirAdmin(){
+  show('admin');if(!$('painel').classList.contains('hide'))return;
+  const {o,r}=repo();$('lOwner').value=o;$('lRepo').value=r;
+  if(LS('gh_t')){$('lTok').value=LS('gh_t');entrar()}
+}
+async function entrar(){
+  const m=$('lmsg');m.textContent='Verificando...';
+  token=$('lTok').value.trim();SS('gh_o',$('lOwner').value.trim());SS('gh_r',$('lRepo').value.trim());
+  if(!token){m.textContent='Cole o token.';return}
+  try{
+    const r=await fetch(base(),{headers:H(),cache:'no-store'});
+    if(!r.ok){m.textContent='Token, usuário ou repositório inválido.';return}
+    const j=await r.json();if(!j.permissions||!j.permissions.push){m.textContent='Token sem permissão de escrita (Contents: Read and write).';return}
+    await lerBanco();
+  }catch(e){m.textContent='Não foi possível conectar ao GitHub.';return}
+  SS('gh_t',token);m.textContent='';
+  $('login').classList.add('hide');$('painel').classList.remove('hide');
+  aplicarCfg();renderCatalogo();preencherCfg();renderLista();aba('prod');
+  const {o,r}=repo();$('qInfo').textContent='Conectado ao repositório '+o+'/'+r;
+}
+function sair(apagar){if(apagar){SS('gh_t','');token='';$('lTok').value=''}$('painel').classList.add('hide');$('login').classList.remove('hide');show('cliente')}
+
+/* ===== PAINEL ===== */
+function aba(t){['prod','cfg','div','conta'].forEach(x=>$('t-'+x).classList.toggle('hide',x!==t));document.querySelectorAll('.tb').forEach(b=>b.classList.toggle('on',b.dataset.t===t));if(t==='div')prepararDiv()}
+function preencherCfg(){const c=D.cfg;$('cNome').value=c.nome;$('cZap').value=c.whatsapp;$('cIg').value=c.instagram;$('cCor').value=c.cor;$('cCor2').value=c.cor2;$('cFonte').value=c.fonte}
+const OK='Salvo no GitHub! Os clientes verão em 1 a 10 minutos.';
+async function salvarCfg(){
+  let ig=$('cIg').value.trim();if(ig&&!/^https?:/i.test(ig))ig='https://instagram.com/'+ig.replace(/^@/,'');
+  const antes=D.cfg;
+  D.cfg={nome:$('cNome').value.trim()||PADRAO.nome,whatsapp:$('cZap').value.replace(/\D/g,'')||PADRAO.whatsapp,instagram:ig,cor:$('cCor').value,cor2:$('cCor2').value,fonte:$('cFonte').value};
+  $('cmsg').textContent='Salvando...';
+  try{await gravar();aplicarCfg();$('cmsg').textContent=OK}catch(e){D.cfg=antes;$('cmsg').textContent='Falha ao salvar. Confira o token.'}
+}
+function reduzir(f){return new Promise((res,rej)=>{const r=new FileReader();r.onerror=rej;r.onload=()=>{const im=new Image();im.onerror=rej;im.onload=()=>{const s=Math.min(1,480/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',.72))};im.src=r.result};r.readAsDataURL(f)})}
+async function adicionar(){
+  const nome=$('pNome').value.trim(),preco=parseFloat($('pPreco').value),set=(t,ok)=>{$('amsg').textContent=t;$('amsg').className='msg'+(ok?' ok':'')};
+  if(!nome||isNaN(preco)){set('Informe nome e preço.');return}
+  let img=$('pUrl').value.trim();const f=$('pImg').files[0];if(f){try{img=await reduzir(f)}catch(e){set('Não foi possível ler a imagem.');return}}
+  const novo={id:'p'+Date.now(),nome,preco,desc:$('pDesc').value.trim(),img};
+  D.produtos.push(novo);set('Salvando...');
+  try{await gravar()}catch(e){D.produtos=D.produtos.filter(p=>p!==novo);set('Falha ao salvar. Confira o token.');return}
+  ['pNome','pPreco','pDesc','pUrl','pImg'].forEach(i=>$(i).value='');set(OK,true);renderLista();renderCatalogo();
+}
+async function remover(id){
+  const antes=D.produtos;D.produtos=D.produtos.filter(p=>p.id!==id);
+  try{await gravar()}catch(e){D.produtos=antes;alert('Falha ao excluir.')}
+  renderLista();renderCatalogo();
+}
+
+/* ===== DIVULGAR ===== */
+function prepararDiv(){if(!$('dLink').value)$('dLink').value=location.href.split('#')[0].split('?')[0];if(!$('dTexto').value)$('dTexto').value='Olá! Conheça a '+D.cfg.nome+': veja os produtos e peça pelo WhatsApp 👇';gerarQR()}
+function gerarQR(){const el=$('qr');el.innerHTML='';const u=$('dLink').value.trim();if(!u||!window.QRCode){el.textContent='QR Code indisponível.';return}new QRCode(el,{text:u,width:220,height:220,correctLevel:QRCode.CorrectLevel.M})}
+function enviarLink(){open('https://wa.me/'+$('dTel').value.replace(/\D/g,'')+'?text='+encodeURIComponent($('dTexto').value.trim()+'\n'+$('dLink').value.trim()),'_blank')}
+async function copiarLink(){try{await navigator.clipboard.writeText($('dLink').value);$('dOk').textContent='Link copiado!'}catch(e){$('dLink').select();$('dOk').textContent='Selecione o link e copie.'}}
+
+aplicarCfg();renderCatalogo();carregarPublico();
+</script>
+</body>
+</html>
